@@ -1,4 +1,4 @@
-export type Country = {
+export type CountryType = {
   name: string;
   topLevelDomain: string[];
   callingCodes: string[];

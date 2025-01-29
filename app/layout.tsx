@@ -4,6 +4,7 @@ import QueryProvider from "@/components/query-provider";
 
 import "./globals.css";
 import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,10 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" suppressHydrationWarning>
-      <body className={`${inter.className}  antialiased`}>
+      <body className={`${inter.className} antialiased`}>
         <QueryProvider>
           <Header />
           {children}
+          <Footer />
         </QueryProvider>
       </body>
     </html>
