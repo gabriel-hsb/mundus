@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { COUNTRIES_BASE_URL } from "@/features/countries/api/countries";
 import { CountryType } from "@/features/countries/types/types";
-import BorderCountry from "@/features/countries/components/border-country";
+import Link from "next/link";
 
 type Props = {
   params: Promise<{
@@ -24,13 +24,13 @@ export default function Country({ params }: Props) {
       fetch(`${COUNTRIES_BASE_URL}/name/${country}`).then((res) => res.json()),
   });
 
-  console.log(data);
+  if (!data || data.length < 1) return;
+
+  const fetchedCountry: CountryType = data[0];
 
   if (isPending) return "carregando...";
 
   if (error) return "erro 🙁";
-
-  const fetchedCountry: CountryType = data[0];
 
   return (
     <div>
@@ -42,9 +42,8 @@ export default function Country({ params }: Props) {
           width={1000}
           height={1000}
         />
-        {/* TODO: map over border countries here, or inside <BorderCountry /> component? */}
-        <BorderCountry CountryCodes={fetchedCountry.borders} />
       </div>
+      <Link href={`/pais/${country}/pictures`}>Pictures</Link>
     </div>
   );
 }
