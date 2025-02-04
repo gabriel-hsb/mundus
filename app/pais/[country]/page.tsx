@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { COUNTRIES_BASE_URL } from "@/features/countries/api/countries";
 import { CountryType } from "@/features/countries/types/types";
 import Link from "next/link";
+import Currency from "@/features/currency-converter/components/currency";
 
 type Props = {
   params: Promise<{
@@ -35,6 +36,8 @@ export default function Country({ params }: Props) {
   return (
     <div>
       <div>País acessado: {fetchedCountry.name}</div>
+      <div>País acessado: {fetchedCountry.currencies[0].code}</div>
+      <Currency currencyCode={fetchedCountry.currencies[0].code} />
       <div>
         <Image
           src={fetchedCountry.flags.svg}
