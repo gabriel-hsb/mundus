@@ -6,7 +6,6 @@ export default function Header() {
       <div className="font-serif text-5xl tracking-wide text-gray-900">
         <Link href={"/"}>Mundus</Link>
       </div>
-      HEADER!
     </div>
   );
 }

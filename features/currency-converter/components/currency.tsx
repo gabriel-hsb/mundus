@@ -10,13 +10,13 @@ type Props = {
 };
 
 export default function Currency({ currencyCode }: Props) {
-  const ACCESS_KEY = process.env.NEXT_PUBLIC_CURRENCY_KEY;
+  const CURRENCY_KEY = process.env.NEXT_PUBLIC_CURRENCY_KEY;
 
   const { data, isPending, error } = useQuery<CurrencyLatest>({
     queryKey: ["currency", currencyCode],
     queryFn: () =>
       fetch(
-        `${CURRENCY_BASE_URL}/latest?apikey=${ACCESS_KEY}&currencies=${currencyCode}&base_currency=BRL`,
+        `${CURRENCY_BASE_URL}/latest?apikey=${CURRENCY_KEY}&currencies=${currencyCode}&base_currency=BRL`,
       ).then((res) => res.json()),
   });
 

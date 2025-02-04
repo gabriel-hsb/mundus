@@ -12,13 +12,13 @@ type Props = {
 };
 
 export default function Photo({ country }: Props) {
-  const ACCESS_KEY = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
+  const UNSPLASH_ACCESS_KEY = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
 
   const { data, isPending, error } = useQuery<UnsplashResponse>({
     queryKey: ["picture"],
     queryFn: () =>
       fetch(
-        `${UNSPLASH_BASE_URL}/search/photos?page=1&query=${country}&client_id=${ACCESS_KEY}`,
+        `${UNSPLASH_BASE_URL}/search/photos?page=1&query=${country}&client_id=${UNSPLASH_ACCESS_KEY}`,
       ).then((res) => res.json()),
   });
 
