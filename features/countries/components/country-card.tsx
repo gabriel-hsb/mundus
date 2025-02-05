@@ -10,22 +10,33 @@ type Props = {
 export default function CountryCard({ country }: Props) {
   return (
     <Link key={country.name} href={`/pais/${country.name.toLowerCase()}`}>
-      <Image
-        alt={`${country.name}'s flag`}
-        src={country.flags.svg}
-        width={1000}
-        height={1000}
-      />
-      <div className="px-2 py-3">
-        <div className="text-3xl">
-          Nome: <span className="text-red-500">{country.name}</span>
+      <div className="grid grid-rows-[auto_1fr] overflow-hidden rounded-md shadow-sm transition-all hover:shadow-md">
+        <div className="h-[10rem] w-full overflow-hidden">
+          <Image
+            alt={`${country.name}'s flag`}
+            src={country.flags.svg}
+            width={1000}
+            height={1000}
+            className="h-full w-full object-cover"
+          />
         </div>
-        <div>
-          População:
-          {country.population.toLocaleString("pt-BR")}
+        <div className="flex flex-col gap-3 px-4 py-4">
+          <div>
+            <span className="text-xl font-semibold">{country.name}</span>
+          </div>
+          <div>
+            <span className="text-muted-foreground text-sm">População: </span>
+            {country.population.toLocaleString("pt-BR")}
+          </div>
+          <div>
+            <span className="text-muted-foreground text-sm">Região:</span>{" "}
+            {country.region}
+          </div>
+          <div>
+            <span className="text-muted-foreground text-sm">Capital:</span>{" "}
+            {country.capital}
+          </div>
         </div>
-        <div>Região: {country.region}</div>
-        <div>Capital: {country.capital}</div>
       </div>
     </Link>
   );

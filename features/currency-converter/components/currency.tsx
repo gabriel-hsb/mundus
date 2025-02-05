@@ -36,5 +36,5 @@ export default function Currency({ currencyCode }: Props) {
 
   if (!localeCurrency) return "Carregando valor da moeda...";
 
-  return <div>{localeCurrency}</div>;
+  return <div>{localeCurrency} = R$1</div>;
 }
