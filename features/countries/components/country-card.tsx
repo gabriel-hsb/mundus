@@ -10,7 +10,7 @@ type Props = {
 export default function CountryCard({ country }: Props) {
   return (
     <Link key={country.name} href={`/pais/${country.name.toLowerCase()}`}>
-      <div className="grid grid-rows-[auto_1fr] overflow-hidden rounded-md shadow-sm transition-all hover:shadow-md">
+      <div className="grid grid-rows-[auto_1fr] overflow-hidden rounded-md shadow-sm transition-all hover:shadow-lg focus:shadow-lg">
         <div className="h-[10rem] w-full overflow-hidden">
           <Image
             alt={`${country.name}'s flag`}
