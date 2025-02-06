@@ -6,13 +6,17 @@ import { CurrencyLatest } from "../types/types";
 import { CURRENCY_BASE_URL } from "../api/api";
 
 type Props = {
-  currencyCode: string;
+  currencyCode: string | undefined;
 };
 
-export default function Currency({ currencyCode }: Props) {
+export default function CountryCurrency({ currencyCode }: Props) {
   const CURRENCY_KEY = process.env.NEXT_PUBLIC_CURRENCY_KEY;
 
-  const { data, isPending, error } = useQuery<CurrencyLatest>({
+  const {
+    data: currency,
+    isPending,
+    error,
+  } = useQuery<CurrencyLatest>({
     queryKey: ["currency", currencyCode],
     queryFn: () =>
       fetch(
@@ -22,9 +26,11 @@ export default function Currency({ currencyCode }: Props) {
 
   if (isPending) return "carregando moedas...";
 
-  if (error) return "erro ao carregar fotos🙁";
+  if (error) return "erro ao carregar moedas =(";
 
-  const localeCurrency = data.data[currencyCode]?.value.toLocaleString(
+  if (!currencyCode) return <div>Este país não possui moeda oficial</div>;
+
+  const localeCurrency = currency.data[currencyCode]?.value.toLocaleString(
     "pt-BR",
     {
       style: "currency",
@@ -32,9 +38,7 @@ export default function Currency({ currencyCode }: Props) {
     },
   );
 
-  console.log(localeCurrency);
-
   if (!localeCurrency) return "Carregando valor da moeda...";
 
-  return <div>{localeCurrency} = R$1</div>;
+  return <div>R$1 = {localeCurrency}</div>;
 }

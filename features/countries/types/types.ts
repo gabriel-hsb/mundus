@@ -7,7 +7,9 @@ export type CountryType = {
   subregion: string;
   region: string;
   population: number;
+  demonym: string;
   borders: string[];
+  nativeName: string;
   flags: {
     svg: string;
     png: string;
