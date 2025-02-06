@@ -25,12 +25,12 @@ export default function CountryCard({ country }: Props) {
             <span className="text-xl font-semibold">{country.name}</span>
           </div>
           <div>
-            <span className="text-muted-foreground text-sm">População: </span>
-            {country.population.toLocaleString("pt-BR")}
-          </div>
-          <div>
             <span className="text-muted-foreground text-sm">Região:</span>{" "}
             {country.region}
+          </div>
+          <div>
+            <span className="text-muted-foreground text-sm">População: </span>
+            {country.population.toLocaleString("pt-BR")}
           </div>
           <div>
             <span className="text-muted-foreground text-sm">Capital:</span>{" "}

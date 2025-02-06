@@ -9,7 +9,7 @@ import { COUNTRIES_BASE_URL } from "@/features/countries/api/countries";
 import { CountryType } from "@/features/countries/types/types";
 import useBorderCountries from "@/features/countries/hooks/use-border-countries";
 
-import CountryCurrency from "@/features/currency-converter/components/country-currency";
+// import CountryCurrency from "@/features/currency-converter/components/country-currency";
 import CountryBorders from "@/features/countries/components/country-borders";
 
 type Props = {
@@ -35,14 +35,7 @@ export default function SingleCountry({ country }: Props) {
 
   if (!fetchedCountry) return <div>País não encontrado</div>;
 
-  const currency = fetchedCountry?.currencies?.[0] ?? undefined;
-
-  function longestString(strings: string[]) {
-    return strings.reduce(
-      (prev, cur) => (cur.length > prev.length ? cur : prev),
-      "",
-    );
-  }
+  // const currency = fetchedCountry?.currencies?.[0] ?? undefined;
 
   return (
     <section className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-6">
@@ -60,22 +53,23 @@ export default function SingleCountry({ country }: Props) {
         <div className="gap flex flex-col">
           <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
             {fetchedCountry.name}
-            <span className="text-muted-foreground ml-2 text-2xl font-normal">
-              {fetchedCountry.nativeName}
-            </span>
           </h1>
-          <span className="text-2xl italic">
-            {longestString(fetchedCountry.altSpellings)}
+          <span className="text-muted-foreground text-2xl font-normal">
+            {fetchedCountry.nativeName}
           </span>
         </div>
 
         <div>
-          <span className="font-semibold">{fetchedCountry.population}</span>{" "}
-          {fetchedCountry.demonym.toLowerCase()}s
+          <span className="font-semibold">
+            <span className="text-muted-foreground text-sm font-normal">
+              População:{" "}
+            </span>
+            {fetchedCountry.population.toLocaleString()}
+          </span>
         </div>
 
         <CountryBorders bordersNames={bordersNames} />
-        <CountryCurrency currencyCode={currency?.code} />
+        {/* <CountryCurrency currencyCode={currency?.code} /> */}
 
         <Link href={`/pais/${country}/pictures`}>Pictures</Link>
       </div>
