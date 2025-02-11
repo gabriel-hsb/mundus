@@ -3,21 +3,32 @@ import Link from "next/link";
 
 type Props = {
   bordersNames: (string | undefined)[] | undefined;
+  currentCountry: string;
 };
 
-export default function CountryBorders({ bordersNames }: Props) {
+export default function CountryBorders({
+  bordersNames,
+  currentCountry,
+}: Props) {
   if (!bordersNames)
-    return <div>Este país não faz divisa com outros países</div>;
+    return (
+      <p className="text-muted-foreground text-base font-normal">
+        Este país não faz fronteira com outros países.
+      </p>
+    );
 
   return (
-    <div>
+    <div className="flex flex-col gap-2 text-sm">
+      <span className="text-muted-foreground text-sm font-normal">
+        {currentCountry} faz fronteira com:{" "}
+      </span>
       <ul className="flex flex-row flex-wrap gap-1">
         {bordersNames.map((border, idx) => (
           <Link key={idx} href={`/pais/${border?.toLowerCase()}`}>
             <li>
               <Badge
                 variant={"outline"}
-                className="hover:bg-primary hover:text-primary-foreground transition duration-100 visited:bg-red-200"
+                className="hover:bg-primary hover:text-primary-foreground transition duration-100"
               >
                 {border}
               </Badge>

@@ -50,7 +50,7 @@ export default function SingleCountry({ country }: Props) {
       </div>
 
       <div className="flex flex-col gap-4">
-        <div className="gap flex flex-col">
+        <div className="flex flex-col gap-1">
           <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
             {fetchedCountry.name}
           </h1>
@@ -68,7 +68,10 @@ export default function SingleCountry({ country }: Props) {
           </span>
         </div>
 
-        <CountryBorders bordersNames={bordersNames} />
+        <CountryBorders
+          currentCountry={fetchedCountry.name}
+          bordersNames={bordersNames}
+        />
         {/* <CountryCurrency currencyCode={currency?.code} /> */}
 
         <Link href={`/pais/${country}/pictures`}>Pictures</Link>
