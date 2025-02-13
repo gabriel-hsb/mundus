@@ -24,6 +24,7 @@ export default function CountryBorders({
       </span>
       <ul className="flex flex-row flex-wrap gap-1">
         {bordersNames.map((border, idx) => (
+          // TODO: on hover, pop up country-border's flag
           <Link key={idx} href={`/pais/${border?.toLowerCase()}`}>
             <li>
               <Badge

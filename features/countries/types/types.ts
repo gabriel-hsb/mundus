@@ -19,9 +19,8 @@ export type CountryType = {
     name: string;
     symbol: string;
   }[];
-  languagues: {
+  languages: {
     name: string;
-    nativeName: string;
   }[];
   independent: boolean;
 };

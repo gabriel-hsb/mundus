@@ -1,6 +1,6 @@
 import { use } from "react";
 
-import SingleCountry from "@/features/countries/components/single-country";
+import SingleCountry from "@/features/countries/components/single-country/single-country";
 
 type Props = {
   params: Promise<{
