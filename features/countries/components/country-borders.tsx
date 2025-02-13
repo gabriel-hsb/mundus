@@ -29,7 +29,7 @@ export default function CountryBorders({
             <li>
               <Badge
                 variant={"outline"}
-                className="hover:bg-primary hover:text-primary-foreground transition duration-100"
+                className="hover:bg-primary hover:text-primary-foreground text-sm transition duration-100"
               >
                 {border}
               </Badge>

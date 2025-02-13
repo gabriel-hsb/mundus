@@ -22,10 +22,13 @@ import {
   MapPin,
   User,
   Users,
-  Globe,
+  ChevronRight,
+  Euro,
 } from "lucide-react";
 
 import { Separator } from "@/components/ui/separator";
+import PicturePreview from "@/features/unsplash-api/components/picture-preview";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   country: string;
@@ -53,106 +56,122 @@ export default function SingleCountry({ country }: Props) {
   // const currency = fetchedCountry?.currencies?.[0] ?? undefined;
 
   return (
-    <section className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-6">
-      <div>
-        <Image
-          src={fetchedCountry.flags.svg}
-          alt={`${fetchedCountry.name}'s flag`}
-          width={1000}
-          height={1000}
-          className="rounded-md"
-        />
-      </div>
-
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-1">
-          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-            {fetchedCountry.name}
-          </h1>
-          <span className="text-muted-foreground text-2xl font-normal">
-            {fetchedCountry.nativeName}
-          </span>
+    <section className="mx-auto max-w-7xl px-4 py-6">
+      <div className="grid grid-cols-2 gap-8">
+        <div>
+          <Image
+            src={fetchedCountry.flags.svg}
+            alt={`${fetchedCountry.name}'s flag`}
+            width={1000}
+            height={1000}
+            className="rounded-md"
+          />
         </div>
 
         <div className="flex flex-col gap-4">
-          <div className="grid grid-cols-[1fr_auto_1fr] gap-4">
-            <div className="flex flex-col gap-2">
-              <LabelValue
-                label={"Região"}
-                value={fetchedCountry.subregion}
-                icon={<Map size={"20"} strokeWidth={"1.5"} />}
-              />
-
-              <LabelValue
-                label={"Capital"}
-                value={fetchedCountry.capital}
-                icon={<MapPin size={"20"} strokeWidth={"1.5"} />}
-              />
-
-              <LabelValue
-                label={"Independente"}
-                value={fetchedCountry.independent ? "Sim" : "Não"}
-                icon={
-                  fetchedCountry.independent ? (
-                    <LockOpenIcon
-                      size={"20"}
-                      strokeWidth={"1.5"}
-                      className="text-green-600"
-                    />
-                  ) : (
-                    <LockIcon
-                      size={"20"}
-                      strokeWidth={"1.5"}
-                      className="text-red-600"
-                    />
-                  )
-                }
-              />
-            </div>
-
-            <Separator orientation="vertical" />
-
-            <div className="flex flex-col gap-2">
-              <LabelValue
-                label={"População"}
-                value={fetchedCountry.population.toLocaleString()}
-                icon={<Users size={"20"} strokeWidth={"1.5"} />}
-              />
-              <LabelValue
-                label={"Gentílico"}
-                value={fetchedCountry.demonym}
-                icon={<User size={"20"} strokeWidth={"1.5"} />}
-              />
-              <LabelValue
-                label={"Línguas"}
-                value={fetchedCountry.languages.map((l) => l.name)}
-                icon={<Languages size={"20"} strokeWidth={"1.5"} />}
-              />
-            </div>
+          <div className="flex flex-col gap-1">
+            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+              {fetchedCountry.name}
+            </h1>
+            <span className="text-muted-foreground text-2xl font-normal">
+              {fetchedCountry.nativeName}
+            </span>
           </div>
 
-          <Separator />
+          <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-[1fr_auto_1fr] gap-4">
+              <div className="flex flex-col gap-2">
+                <LabelValue
+                  label={"Região"}
+                  value={fetchedCountry.subregion}
+                  icon={<Map size={"20"} strokeWidth={"1.5"} />}
+                />
 
-          <div className="flex flex-col gap-2">
-            <LabelValue
-              label={"Moeda"}
-              value={fetchedCountry.currencies[0].name}
-              icon={<CircleDollarSign size={"20"} strokeWidth={"1.5"} />}
-            />
-            <LabelValue
-              label={"Símbolo"}
-              value={fetchedCountry.currencies[0].symbol}
-              icon={<Globe size={"20"} strokeWidth={"1.5"} />}
-            />
+                <LabelValue
+                  label={"Capital"}
+                  value={fetchedCountry.capital}
+                  icon={<MapPin size={"20"} strokeWidth={"1.5"} />}
+                />
+
+                <LabelValue
+                  label={"Independente"}
+                  value={fetchedCountry.independent ? "Sim" : "Não"}
+                  icon={
+                    fetchedCountry.independent ? (
+                      <LockOpenIcon
+                        size={"20"}
+                        strokeWidth={"1.5"}
+                        className="text-green-600"
+                      />
+                    ) : (
+                      <LockIcon
+                        size={"20"}
+                        strokeWidth={"1.5"}
+                        className="text-red-600"
+                      />
+                    )
+                  }
+                />
+              </div>
+
+              <Separator orientation="vertical" />
+
+              <div className="flex flex-col gap-2">
+                <LabelValue
+                  label={"População"}
+                  value={fetchedCountry.population.toLocaleString()}
+                  icon={<Users size={"20"} strokeWidth={"1.5"} />}
+                />
+                <LabelValue
+                  label={"Gentílico"}
+                  value={fetchedCountry.demonym}
+                  icon={<User size={"20"} strokeWidth={"1.5"} />}
+                />
+                <LabelValue
+                  label={"Idiomas"}
+                  value={fetchedCountry.languages.map((l) => l.name)}
+                  icon={<Languages size={"20"} strokeWidth={"1.5"} />}
+                />
+              </div>
+            </div>
+
+            <Separator />
+
+            <div className="flex flex-col gap-2">
+              <LabelValue
+                label={"Moeda"}
+                value={fetchedCountry.currencies[0].name}
+                icon={<CircleDollarSign size={"20"} strokeWidth={"1.5"} />}
+              />
+              <LabelValue
+                label={"Símbolo"}
+                value={fetchedCountry.currencies[0].symbol}
+                icon={<Euro size={"20"} strokeWidth={"1.5"} />}
+              />
+            </div>
+            <Separator />
           </div>
-          <Separator />
+
+          <CountryBorders
+            currentCountry={fetchedCountry.name}
+            bordersNames={bordersNames}
+          />
         </div>
+      </div>
 
-        <CountryBorders
-          currentCountry={fetchedCountry.name}
-          bordersNames={bordersNames}
-        />
-        <Link href={`/pais/${country}/pictures`}>Pictures</Link>
+      <div className="mt-8 flex flex-col gap-4">
+        <h2 className="scroll-m-20 text-2xl font-bold tracking-tight lg:text-5xl">
+          Fotos
+        </h2>
+        <PicturePreview country={fetchedCountry.name} />
+        <Link href={`/pais/${country}/pictures`} className="max-w-fit">
+          <Button
+            variant="outline"
+            className="w-fit max-w-fit cursor-pointer px-4"
+          >
+            <ChevronRight /> Ver todas as fotos
+          </Button>
+        </Link>
       </div>
     </section>
   );
