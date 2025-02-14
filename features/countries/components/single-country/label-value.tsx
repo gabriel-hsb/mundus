@@ -1,16 +1,15 @@
-import React from "react";
-
 type Props = {
   label: string;
   value: string | string[];
   icon?: React.ReactNode;
+  className?: string;
 };
 
-export default function LabelValue({ label, value, icon }: Props) {
-  let langs;
+export default function LabelValue({ label, value, icon, className }: Props) {
+  let array;
 
   if (typeof value !== "string" && Array.isArray(value)) {
-    langs = value.map((l, i) => {
+    array = value.map((l, i) => {
       if (!(i === value.length - 1)) return `${l}, `;
 
       return l;
@@ -24,7 +23,7 @@ export default function LabelValue({ label, value, icon }: Props) {
         <span className="text-muted-foreground text-sm font-normal capitalize">
           {label}:{" "}
         </span>
-        {langs ?? value}
+        <span className={className}>{array ?? value}</span>
       </span>
     </div>
   );

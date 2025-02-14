@@ -13,6 +13,13 @@ import useBorderCountries from "@/features/countries/hooks/use-border-countries"
 import CountryBorders from "@/features/countries/components/country-borders";
 import LabelValue from "./label-value";
 
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+
+import PicturePreview from "@/features/unsplash-api/components/picture-preview";
+
+import { getTimeFromUTC } from "@/features/timezone/time-from-utc";
+
 import {
   CircleDollarSign,
   Languages,
@@ -24,11 +31,8 @@ import {
   Users,
   ChevronRight,
   Euro,
+  Clock,
 } from "lucide-react";
-
-import { Separator } from "@/components/ui/separator";
-import PicturePreview from "@/features/unsplash-api/components/picture-preview";
-import { Button } from "@/components/ui/button";
 
 type Props = {
   country: string;
@@ -129,7 +133,9 @@ export default function SingleCountry({ country }: Props) {
                 />
                 <LabelValue
                   label={"Idiomas"}
-                  value={fetchedCountry.languages.map((l) => l.name)}
+                  value={fetchedCountry.languages
+                    .slice(0, 2)
+                    .map((l) => l.name)}
                   icon={<Languages size={"20"} strokeWidth={"1.5"} />}
                 />
               </div>
@@ -137,17 +143,29 @@ export default function SingleCountry({ country }: Props) {
 
             <Separator />
 
-            <div className="flex flex-col gap-2">
-              <LabelValue
-                label={"Moeda"}
-                value={fetchedCountry.currencies[0].name}
-                icon={<CircleDollarSign size={"20"} strokeWidth={"1.5"} />}
-              />
-              <LabelValue
-                label={"Símbolo"}
-                value={fetchedCountry.currencies[0].symbol}
-                icon={<Euro size={"20"} strokeWidth={"1.5"} />}
-              />
+            <div className="grid grid-cols-[1fr_auto_1fr] gap-4">
+              <div className="flex flex-col gap-2">
+                <LabelValue
+                  label={"Moeda"}
+                  value={fetchedCountry.currencies[0].name}
+                  icon={<CircleDollarSign size={"20"} strokeWidth={"1.5"} />}
+                />
+                <LabelValue
+                  label={"Símbolo"}
+                  value={fetchedCountry.currencies[0].symbol}
+                  icon={<Euro size={"20"} strokeWidth={"1.5"} />}
+                />
+              </div>
+              <Separator orientation="vertical" />
+
+              <div className="flex flex-col gap-2">
+                <LabelValue
+                  label={"Horário"}
+                  value={getTimeFromUTC(fetchedCountry.timezones[0])}
+                  icon={<Clock size={"20"} strokeWidth={"1.5"} />}
+                  className="font-mono font-medium"
+                />
+              </div>
             </div>
             <Separator />
           </div>

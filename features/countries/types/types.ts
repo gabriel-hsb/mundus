@@ -5,6 +5,7 @@ export type CountryType = {
   capital: string;
   altSpellings: string[];
   subregion: string;
+  timezones: string[];
   region: string;
   population: number;
   demonym: string;
