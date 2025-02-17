@@ -60,7 +60,7 @@ export default function SingleCountry({ country }: Props) {
   // const currency = fetchedCountry?.currencies?.[0] ?? undefined;
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-6">
+    <section className="mx-auto max-w-7xl px-4 pb-6">
       <div className="grid grid-cols-2 gap-8">
         <div>
           <Image
@@ -178,9 +178,7 @@ export default function SingleCountry({ country }: Props) {
       </div>
 
       <div className="mt-8 flex flex-col gap-4">
-        <h2 className="scroll-m-20 text-2xl font-bold tracking-tight lg:text-5xl">
-          Fotos
-        </h2>
+        <h2 className="scroll-m-20 text-4xl font-bold tracking-tight">Fotos</h2>
         <PicturePreview country={fetchedCountry.name} />
         <Link href={`/pais/${country}/pictures`} className="max-w-fit">
           <Button

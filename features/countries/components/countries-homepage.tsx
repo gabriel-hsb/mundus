@@ -19,7 +19,7 @@ export default function CountriesHomepage() {
   if (error) return "erro 🙁";
 
   return (
-    <section className="mx-auto grid max-w-7xl grid-cols-1 gap-x-16 gap-y-8 px-4 py-6 sm:grid-cols-2 md:px-10 lg:grid-cols-4">
+    <section className="mx-auto grid max-w-7xl grid-cols-1 gap-x-16 gap-y-8 px-4 pb-6 sm:grid-cols-2 md:px-10 lg:grid-cols-4">
       {data.map((country: CountryType) => (
         <CountryCard key={country.name} country={country} />
       ))}
