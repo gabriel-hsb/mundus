@@ -4,7 +4,7 @@ export type UnsplashResponse = {
   total_pages: number;
 };
 
-type UnsplashPhoto = {
+export type UnsplashPhoto = {
   id: string;
   slug: string;
   alternative_slugs: AlternativeSlugs;
