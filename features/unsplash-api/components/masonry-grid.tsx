@@ -19,6 +19,8 @@ export default function MasonryGrid({ photos }: Props) {
           width={photo.width}
           loading="lazy"
           className="h-full w-full rounded-md object-cover"
+          placeholder="blur"
+          blurDataURL={photo.urls.thumb}
         />
       ))}
     </div>

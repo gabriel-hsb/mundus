@@ -6,15 +6,12 @@ type Props = {
 };
 
 export default function LabelValue({ label, value, icon, className }: Props) {
-  let array;
+  const formatter = new Intl.ListFormat("pt-BR", {
+    style: "long",
+    type: "conjunction",
+  });
 
-  if (typeof value !== "string" && Array.isArray(value)) {
-    array = value.map((l, i) => {
-      if (!(i === value.length - 1)) return `${l}, `;
-
-      return l;
-    });
-  }
+  const values = typeof value === "string" ? value : formatter.format(value);
 
   return (
     <div className="flex items-center whitespace-nowrap">
@@ -23,7 +20,7 @@ export default function LabelValue({ label, value, icon, className }: Props) {
         <span className="text-muted-foreground text-sm font-normal capitalize">
           {label}:{" "}
         </span>
-        <span className={className}>{array ?? value}</span>
+        <span className={className}>{values}</span>
       </span>
     </div>
   );
